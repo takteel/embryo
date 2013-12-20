@@ -8,6 +8,7 @@ python_modules/
 pip-log.txt
 
 # 
-.mr.developer.cfg
+*.sublime-project
+*.sublime-workspace
 .project
 .pydevproject
