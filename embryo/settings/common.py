@@ -13,8 +13,6 @@ SITE_ROOT = dirname(DJANGO_ROOT)
 SECRET_KEY = 's@3@s18q_4c+b^y^@i6iczzvy(o#ya)cy*i0+u_@mq2us_(qw^'
 
 sys.path.append(SITE_ROOT)
-sys.path.append(normpath(join(DJANGO_ROOT, 'apps')))
-sys.path.append(normpath(join(DJANGO_ROOT, 'libs')))
 
 ALLOWED_HOSTS = []
 
@@ -91,6 +89,7 @@ INSTALLED_APPS = (
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+	'libs.defer'
 )
 # END APPS CONFIGURATION
 
