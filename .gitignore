@@ -1,13 +1,16 @@
 # Virtual environment
 python_modules/
 
-# 
+# Development database files
+*.sqlite3
+
+# Compiled python files
 *.pyc
 
 # Installer logs
 pip-log.txt
 
-# 
+# IDE or editors files
 *.sublime-project
 *.sublime-workspace
 .project
