@@ -22,3 +22,12 @@ class Action(models.Model):
 
 	class Meta:
 		app_label = "defer"
+
+from django.db.models.signals import post_save
+from django.dispatch.dispatcher import receiver
+
+@receiver(post_save, sender = Action)
+def on_saved(sender, **kwargs):
+	from libs.defer.actionprocessor import singleton
+
+	singleton.notify(sender, kwargs['instance'])
