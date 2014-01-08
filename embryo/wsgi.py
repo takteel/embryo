@@ -11,7 +11,6 @@ import os
 os.environ.setdefault("EMBRYO_ENVIRONMENT", "production")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "embryo.settings.%s" % (os.environ["EMBRYO_ENVIRONMENT"],))
 
-
 from libs.defer import actionprocessor
 actionprocessor.singleton.start()
 

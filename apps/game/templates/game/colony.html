@@ -1,0 +1,30 @@
+{% extends "game/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{ block.super }}::Colony{% endblock %}
+
+{% block content %}
+{{ block.super }}
+<div ng-app="Colony">
+
+<nav id="main-navigation">
+	<a href="#!/view">View</a>
+	<a href="#!/scan">Scan</a>
+	<a href="#!/build">Build</a>
+</nav>
+
+<div ng-view></div>
+
+</div>
+
+<script src="{% static 'game/depedencies/angular.min.js' %}"></script>
+<script src="{% static 'game/depedencies/angular-route.min.js' %}"></script>
+
+<script src="{% static 'game/apps/colony/application.js' %}"></script>
+<script src="{% static 'game/apps/colony/services.js' %}"></script>
+<script src="{% static 'game/apps/colony/controllers.js' %}"></script>
+<script src="{% static 'game/apps/colony/filters.js' %}"></script>
+<script src="{% static 'game/apps/colony/directives.js' %}"></script>
+
+{% endblock %}

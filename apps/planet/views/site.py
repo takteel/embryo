@@ -1,2 +1,0 @@
-def planet(name):
-	pass

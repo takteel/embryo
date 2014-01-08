@@ -89,7 +89,8 @@ INSTALLED_APPS = (
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
-	'libs.defer'
+	'libs.defer',
+	'apps.game'
 )
 # END APPS CONFIGURATION
 
