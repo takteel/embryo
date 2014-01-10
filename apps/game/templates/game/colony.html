@@ -8,14 +8,30 @@
 {{ block.super }}
 <div ng-app="Colony">
 
-<nav id="main-navigation">
-	<a href="#!/view">View</a>
-	<a href="#!/scan">Scan</a>
-	<a href="#!/build">Build</a>
-</nav>
+	<nav id="main-navigation">
+		<a href="#!/view">View</a>
+		<a href="#!/scan">Scan</a>
+		<a href="#!/build">Build</a>
+	</nav>
 
-<div ng-view></div>
+	<div ng-view></div>
 
+	<h1>Build</h1>
+	<div ng-controller="InstallationsController">
+		<h2>Structures</h2>
+		<ul>
+			<li ng-repeat="installation in getAvailableInstallations()" ng-click="activateInstallationTool(installation.type_id)" ng-cloak>
+				<span ng-bind="getType(installation.type_id).icon"></span>
+				<span ng-bind="getType(installation.type_id).label"></span>
+				<span ng-bind="installation.count"></span>
+			</li>
+		</ul>
+
+		<h2>Routes</h2>
+		<ul>
+			<li ng-cloak></li>
+		</ul>
+	</div>
 </div>
 
 <script src="{% static 'game/depedencies/angular.min.js' %}"></script>

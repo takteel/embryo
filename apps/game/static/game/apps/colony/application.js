@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-var Colony = angular.module('Colony', [
+var app = angular.module('Colony', [
 	'ngRoute',
 	'Colony.services',
 	'Colony.controllers',
@@ -9,25 +9,29 @@ var Colony = angular.module('Colony', [
 	'Colony.directives'
 ]);
 
-Colony.config([ '$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+app.constant('settings', {
+	partialsUrl: '/static/game/apps/colony/partials'
+});
+
+app.config([ '$routeProvider', '$locationProvider', 'settings' , function ($routeProvider, $locationProvider, settings) {
 	$routeProvider.when('/', {
 		controller : 'ViewController',
-		templateUrl : '/static/game/apps/colony/partials/view.html'
+		templateUrl : settings.partialsUrl + '/view.html'
 	});
 
 	$routeProvider.when('/view', {
 		controller : 'ViewController',
-		templateUrl : '/static/game/apps/colony/partials/view.html'
+		templateUrl : settings.partialsUrl + '/view.html'
 	});
 
 	$routeProvider.when('/build', {
 		controller : 'BuildController',
-		templateUrl : '/static/game/apps/colony/partials/build.html'
+		templateUrl : settings.partialsUrl + '/build.html'
 	});
 
 	$routeProvider.when('/scan', {
 		controller : 'ScanController',
-		templateUrl : '/static/game/apps/colony/partials/scan.html'
+		templateUrl : settings.partialsUrl + '/scan.html'
 	});
 
 	$routeProvider.otherwise({
@@ -38,7 +42,7 @@ Colony.config([ '$routeProvider', '$locationProvider', function ($routeProvider,
 }]);
 
 /*
-Colony.run(['$rootScope', function ($rootScope) {
+app.run(['$rootScope', function ($rootScope) {
 	var _getTopScope = function() {
 		return $rootScope;
 	};

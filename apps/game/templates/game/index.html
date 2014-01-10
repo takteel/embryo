@@ -7,4 +7,78 @@
 {% block content %}
 {{ block.super }}
 Index
+<div ng-app="app">
+	<div ng-controller="simpleCtrl">
+		<ul class="nav pull-right">
+			<li class="divider-vertical"></li>
+			<li ng-show="isAuthenticated()">
+				<a href="#">Pouet</a>
+			</li>
+			<li ng-show="isAuthenticated()" class="logout">
+				<form class="navbar-form">
+					<button class="btn logout" ng-click="logout()">Log out</button>
+				</form>
+			</li>
+			<li ng-hide="isAuthenticated()" class="login">
+				<form class="navbar-form">
+					<button class="btn login" ng-click="login()">Log in</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+
+	<div ng-controller="loginCtrl">
+		<h1>login form when not logged in</h1>
+		<form name="loginForm" accept-charset="utf-8" style="margin: 0 auto; width: 200px;">
+			<h1>Log In</h1>
+			<fieldset id="inputs">
+				<input type="email" name="email" placeholder="Email" ng-model="user.name" required />
+				<input type="password" name="passwd" placeholder="Password" ng-model="user.passwd" required />
+			</fieldset>
+			<fieldset id="actions">
+				<input type="submit" id="submit" value="Log in" />
+				<a href="">Forgot your password?</a><a href="">Register</a>
+			</fieldset>
+		</form>
+	</div>
+
+	<div>
+		<h1>current character when logged in</h1>
+	</div>
+</div>
+
+<script src="{% static 'game/depedencies/angular.min.js' %}"></script>
+<script src="{% static 'game/depedencies/angular-route.min.js' %}"></script>
+
+<script>
+var app = angular.module('app', [ 'ngRoute' ]);
+
+app.controller('simpleCtrl', [ '$scope', '$log', function ($scope, $log) {
+	$scope._isAuthenticated = false;
+
+	$scope.isAuthenticated = function () {
+		return this._isAuthenticated;
+	};
+
+	$scope.login = function () {
+		$log.info('login');
+
+		this._isAuthenticated = true;
+	}
+
+	$scope.logout = function () {
+		$log.info('logout');
+
+		this._isAuthenticated = false;
+	}
+}]);
+
+app.controller('loginCtrl', [ '$scope', '$log', function ($scope, $log) {
+	$scope.user = {
+		name: '',
+		pass:''
+	}
+}]);
+</script>
+
 {% endblock %}
