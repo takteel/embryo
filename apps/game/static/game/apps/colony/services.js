@@ -4,14 +4,6 @@
 
 var module = angular.module('Colony.services', []);
 
-module.service('building', [ '$rootScope', function (rootScope) {
-	var service = {
-		
-	};
-
-	return service;
-}]);
-
 module.service('types', [ '$rootScope', function (rootScope) {
 	this.types = {
 		0: {
@@ -33,7 +25,7 @@ module.service('types', [ '$rootScope', function (rootScope) {
 	};
 }]);
 
-module.service('building', [ '$rootScope', function (rootScope) {
+module.service('building', [ '$rootScope', 'types', function (rootScope, typesProvider) {
 	this.availableInstallationsInStation = [
 		{ type_id: 0, count: 2 },
 		{ type_id: 1, count: 10 },
@@ -45,4 +37,8 @@ module.service('building', [ '$rootScope', function (rootScope) {
 		{ type_id: 1 },
 		{ type_id: 2 }
 	];
+
+	this.activateInstallationTool = function (type_id) {
+		console.log('activating tool for \'' + typesProvider.getType(type_id).label + '\'');
+	}
 }]);

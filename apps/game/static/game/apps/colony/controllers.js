@@ -33,6 +33,7 @@ ColonyControllers.controller('BuildController', [ '$scope', '$http', function ($
 
 ColonyControllers.controller('ScanController', [ '$scope', '$http', function ($scope, $http) {
 	// $scope.ready();
+	
 }]);
 
 ColonyControllers.controller('InstallationsController', [ '$scope', 'types', 'building', function ($scope, svcTypes, svcBuilding) {
@@ -45,6 +46,6 @@ ColonyControllers.controller('InstallationsController', [ '$scope', 'types', 'bu
 	};
 
 	$scope.activateInstallationTool = function (type_id) {
-		console.log('activating tool for \'' + $scope.getType(type_id).label + '\'');
+		return svcBuilding.activateInstallationTool(type_id);
 	};
 }]);
