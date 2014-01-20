@@ -33,4 +33,19 @@ ColonyControllers.controller('BuildController', [ '$scope', '$http', function ($
 
 ColonyControllers.controller('ScanController', [ '$scope', '$http', function ($scope, $http) {
 	// $scope.ready();
+	
+}]);
+
+ColonyControllers.controller('InstallationsController', [ '$scope', 'types', 'building', function ($scope, svcTypes, svcBuilding) {
+	$scope.getAvailableInstallations = function () {
+		return svcBuilding.availableInstallationsInStation;
+	};
+
+	$scope.getType = function (id) {
+		return svcTypes.getType(id);
+	};
+
+	$scope.activateInstallationTool = function (type_id) {
+		return svcBuilding.activateInstallationTool(type_id);
+	};
 }]);
