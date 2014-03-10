@@ -1,0 +1,35 @@
+AddHandler fcgid-script .py
+
+RewriteEngine On
+
+# Force the leading www
+RewriteCond %{HTTP_HOST} ^embryo-game.com$
+RewriteRule ^(.*)$ http://www.embryo-game.com/$1 [QSA,L,R=301]
+
+# Serve all static files directly from static.embryo-game.com
+# to ovoid cookies and thus maximize proxy caching)
+RewriteCond %{HTTP_HOST} ^static.embryo-game.com$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ static/$1 [L]
+
+# Serve all media files directly from media.embryo-game.com
+# to ovoid cookies and thus maximize proxy caching)
+RewriteCond %{HTTP_HOST} ^media.embryo-game.com$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ media/$1 [L]
+
+# Serve any non file with fcgi django
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ fcgi.py/$1 [L]
+
+# Defines some cache-control directives :
+# 1 week for images
+# 2 days for scripts and stylesheets
+<IfModule mod_headers.c>
+    <FilesMatch "\\.(ico|jpe?g|png|gif)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+    <FilesMatch "\\.(js|css)$">
+        Header set Cache-Control "max-age=172800, public, proxy-revalidate"
+    </FilesMatch>
+</IfModule>

@@ -7,9 +7,20 @@ from common import *
 # DEBUG CONFIGURATION
 DEBUG = False
 TEMPLATE_DEBUG = False
-
-ALLOWED_HOSTS = [ '.carbon-game.com' ]
 # END DEBUG CONFIGURATION
+
+ALLOWED_HOSTS = [ '.embryo-game.com' ]
+
+SESSION_COOKIE_DOMAIN = 'www.embryo-game.com'
+CRSF_COOKIE_DOMAIN = 'www.embryo-game.com'
+
+# MEDIA FILES CONFIGURATION
+MEDIA_URL = 'media.embryo-game.com/'
+# END MEDIA FILES CONFIGURATION
+
+# STATIC FILES CONFIGURATION
+STATIC_URL = 'static.embryo-game.com/'
+# END STATIC FILES CONFIGURATION
 
 # EMAIL CONFIGURATION
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -19,7 +30,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': normpath(join(DJANGO_ROOT, 'db.sqlite3'))
+        'NAME': normpath(join(PROJECT_ROOT, 'embryo', 'production.sqlite3'))
 	}
 }
 # END DATABASE CONFIGURATION
@@ -28,7 +39,7 @@ DATABASES = {
 CACHES = {
 	'default': {
 		'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-		'LOCATION': normpath(join(DJANGO_ROOT, 'cache'))
+		'LOCATION': normpath(join(PROJECT_ROOT, 'embryo', 'cache'))
 	}
 }
 # END CACHE CONFIGURATION
